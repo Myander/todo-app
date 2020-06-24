@@ -1,53 +1,42 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import TodoList from '../../components/Todos/TodoList/TodoList';
 import NewTodo from '../../components/Todos/NewTodo/NewTodo';
-import { Todo } from '../../components/Todos/todo.model';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../../store/todos/actions';
+import { RootState } from '../../store/rootState';
 
 const Inbox: FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const db = firebase.firestore();
-  //   db.collection('todos')
-  //     .add({
-  //       createdAt: new Date(),
-  //       content: 'finish setup',
-  //       project: null,
-  //       sheduled: null,
-  //     })
-  //     .then(docRef => {
-  //       console.log('Document written with ID: ', docRef.id);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error adding document: ', error);
-  //     });
-  // }, []);
+  const selectUid = (state: RootState) => state.auth.uid;
+  const selectTodos = (state: RootState) => state.todos;
+  const uid = useSelector(selectUid);
+  const todoState = useSelector(selectTodos);
 
-  // useEffect(() => {
-  //   const db = firebase.firestore();
-  //   db.collection('todos')
-  //     .get()
-  //     .then(querySnapshot => {
-  //       querySnapshot.forEach(doc => {
-  //         console.log(doc.data());
-  //       });
-  //     });
-  // }, []);
+  useEffect(() => {
+    dispatch(actions.fetchTodos());
+  }, [dispatch]);
 
   const todoAddHandler = (text: string) => {
-    setTodos(prevTodos => [
-      ...prevTodos,
-      { id: Math.random().toString(), text },
-    ]);
+    dispatch(actions.addTodo(text, null, uid!));
   };
 
   const todoDeleteHander = (id: string) => {
-    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
+    dispatch(actions.deleteTodo(id));
+  };
+
+  const todoEditHandler = (id: string, content: string) => {
+    dispatch(actions.editTodo(id, content));
   };
 
   return (
     <div>
-      <TodoList todos={todos} onDeleteTodo={todoDeleteHander} />
+      <TodoList
+        todos={todoState.todos}
+        onDeleteTodo={todoDeleteHander}
+        onHandleEdit={todoEditHandler}
+        loading={todoState.loading}
+      />
       <NewTodo onAddTodo={todoAddHandler} />
     </div>
   );

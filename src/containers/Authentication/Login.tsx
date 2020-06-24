@@ -22,23 +22,8 @@ const Login: FC = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log('user', email, password);
+    //console.log('user', email, password);
     dispatch(actions.authUser(email, password, false));
-    // firebase
-    //   .auth()
-    //   .signInWithEmailAndPassword(email, password)
-    //   .then(res => console.log('res', res.user))
-    //   .catch(function (error) {
-    //     // Handle Errors here.
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     if (errorCode === 'auth/wrong-password') {
-    //       alert('Wrong password.');
-    //     } else {
-    //       alert(errorMessage);
-    //     }
-    //     console.log(error);
-    //   });
   };
 
   return (

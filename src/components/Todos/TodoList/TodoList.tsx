@@ -1,21 +1,34 @@
 import React from 'react';
+import { Todo as TodoModel } from '../../../store/todos/types';
+import Todo from '../Todo/Todo';
+import { Spinner } from '../../UI/Spinner/Spinner.styled';
 
 interface TodoListProps {
-  todos: { id: string; text: string }[];
+  todos: TodoModel[];
   onDeleteTodo: (id: string) => void;
+  onHandleEdit: (id: string, content: string) => void;
+  loading: boolean;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, onDeleteTodo }) => {
-  return (
+const TodoList: React.FC<TodoListProps> = props => {
+  let todoList = (
     <ul>
-      {todos.map(todo => (
+      {props.todos.map(todo => (
         <li key={todo.id}>
-          <span>{todo.text}</span>
-          <button onClick={() => onDeleteTodo(todo.id)}>DELETE</button>
+          <Todo
+            todo={todo}
+            onDeleteTodo={props.onDeleteTodo}
+            onHandleEdit={props.onHandleEdit}
+          />
         </li>
       ))}
     </ul>
   );
+
+  if (props.loading) {
+    todoList = <Spinner />;
+  }
+  return <div>{todoList}</div>;
 };
 
 export default TodoList;
