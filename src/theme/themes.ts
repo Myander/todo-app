@@ -8,10 +8,11 @@ export const darkTheme: DefaultTheme = {
   gradient: 'linear-gradient(#091236, #1E215D)',
   colors: {
     main: 'hsla(0,0%,100%,.87)',
-    secondary: '#999999',
+    secondary: '#cccccc',
     backgroundMain: '#1f1f1f',
     backgroundSecondary: '#282828',
     highlight: '#404040',
+    btn_background: 'rgba(255, 255, 255, 0.2)',
   },
 };
 
@@ -26,5 +27,6 @@ export const lightTheme: DefaultTheme = {
     backgroundMain: '#fff',
     backgroundSecondary: '#ededed',
     highlight: 'hsla(0,0%,100%,.87)',
+    btn_background: 'rgba(0, 0, 0, 0.2)',
   },
 };

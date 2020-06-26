@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
 import { NavContainer, NavItems } from './Navbar.styled';
 import Toggle from '../../UI/Toggle/Toggle';
-import { Button } from '../../UI/Button/Button.styled';
+import { Button } from '../../UI/Buttons/Buttons.styled';
 import DrawerToggle from '../SideNav/DrawerToggle/DrawerToggle';
 import { Link } from 'react-router-dom';
-//import firebase from '../../../firebase';
 import { useDispatch } from 'react-redux';
 import { authLogout } from '../../../store/auth/actions';
 
@@ -19,11 +18,6 @@ const Navbar: FC<NavProps> = props => {
 
   const handleSignout = () => {
     dispatch(authLogout());
-    // firebase
-    //   .auth()
-    //   .signOut()
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err));
   };
 
   return (
@@ -37,18 +31,12 @@ const Navbar: FC<NavProps> = props => {
           darkTheme={props.toggleDarkTheme}
         />
         <Link to="/login">
-          <Button bg={'blue'} color={'white'}>
-            Log in
-          </Button>
+          <Button>Log in</Button>
         </Link>
         <Link to="/signup">
-          <Button bg={'blue'} color={'white'}>
-            Sign up
-          </Button>
+          <Button>Sign up</Button>
         </Link>
-        <Button bg={'blue'} color={'white'} onClick={handleSignout}>
-          Log out
-        </Button>
+        <Button onClick={handleSignout}>Log out</Button>
       </NavItems>
     </NavContainer>
   );

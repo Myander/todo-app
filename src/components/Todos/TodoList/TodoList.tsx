@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Todo as TodoModel } from '../../../store/todos/types';
 import Todo from '../Todo/Todo';
 import { Spinner } from '../../UI/Spinner/Spinner.styled';
+import { StyledList, ButtonContainer, CenteredText } from './TodoList.styles';
+import Modal from '../../UI/Modal/Modal';
+import { CancelButton, RedButton } from '../../UI/Buttons/Buttons.styled';
 
 interface TodoListProps {
   todos: TodoModel[];
@@ -11,24 +14,50 @@ interface TodoListProps {
 }
 
 const TodoList: React.FC<TodoListProps> = props => {
+  const [open, setOpen] = useState(false);
+  const [todoId, setTodoId] = useState('');
+
+  const toggleOverlay = (id: string) => {
+    setOpen(currOpen => !currOpen);
+    setTodoId(id);
+  };
+
+  const handleDelete = () => {
+    props.onDeleteTodo(todoId);
+    setOpen(currOpen => !currOpen);
+  };
+
   let todoList = (
-    <ul>
+    <StyledList>
       {props.todos.map(todo => (
         <li key={todo.id}>
           <Todo
             todo={todo}
             onDeleteTodo={props.onDeleteTodo}
             onHandleEdit={props.onHandleEdit}
+            toggleModal={toggleOverlay}
           />
         </li>
       ))}
-    </ul>
+    </StyledList>
   );
 
   if (props.loading) {
     todoList = <Spinner />;
   }
-  return <div>{todoList}</div>;
+
+  return (
+    <div>
+      <Modal open={open}>
+        <CenteredText>Are you sure you want to delete this todo?</CenteredText>
+        <ButtonContainer>
+          <CancelButton onClick={() => toggleOverlay('')}>Cancel</CancelButton>
+          <RedButton onClick={handleDelete}>Delete</RedButton>
+        </ButtonContainer>
+      </Modal>
+      {todoList}
+    </div>
+  );
 };
 
 export default TodoList;

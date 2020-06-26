@@ -1,27 +1,62 @@
-import React, { useRef } from 'react';
-// import styled, { useTheme } from 'styled-components';
+import React, { useRef, useState, Fragment, useEffect } from 'react';
+import { InputContainer, Input, RightButton } from '../Todo/Todo.styles';
+import { BlueButton, CancelButton } from '../../UI/Buttons/Buttons.styled';
+import { StyledPlusIcon, PlusButton, ElementContainer } from './NewTodo.styles';
 
 interface NewTodoProps {
   onAddTodo: (text: string) => void;
 }
 
-const NewTodo: React.FC<NewTodoProps> = ({ onAddTodo }) => {
+const NewTodo: React.FC<NewTodoProps> = props => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [add, setAdd] = useState(false);
+  const [content, setContent] = useState('');
 
-  const todoSubmitHander = (event: React.FormEvent) => {
-    event.preventDefault();
-    const enteredText = inputRef.current!.value;
-    onAddTodo(enteredText);
+  const handleAddTodo = () => {
+    if (content === '') {
+      alert('enter a todo');
+      return;
+    }
+    props.onAddTodo(content);
   };
 
-  return (
-    <form onSubmit={todoSubmitHander}>
-      <div>
-        <label htmlFor="todo-text">Todo Text</label>
-        <input type="text" id="todo-text" ref={inputRef} />
+  const handleShowInput = () => {
+    setAdd(currState => !currState);
+  };
+
+  const handleChange = (event: React.FormEvent) => {
+    const target = event.target as HTMLInputElement;
+    setContent(target.value);
+  };
+
+  useEffect(() => {
+    if (add) inputRef.current!.focus();
+  });
+
+  const todoInput = (
+    <ElementContainer>
+      <InputContainer>
+        <Input ref={inputRef} onChange={handleChange} value={content} />
+        <RightButton>Schedule</RightButton>
+      </InputContainer>
+      <div style={{ marginTop: '10px' }}>
+        <BlueButton onClick={handleAddTodo}>Save</BlueButton>
+        <CancelButton onClick={handleShowInput}>Cancel</CancelButton>
       </div>
-      <button type="submit">ADD TODO</button>
-    </form>
+    </ElementContainer>
+  );
+
+  return (
+    <div>
+      {add ? (
+        <Fragment>{todoInput}</Fragment>
+      ) : (
+        <PlusButton onClick={handleShowInput}>
+          <StyledPlusIcon />
+          Add Todo
+        </PlusButton>
+      )}
+    </div>
   );
 };
 

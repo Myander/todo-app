@@ -5,6 +5,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/todos/actions';
 import { RootState } from '../../store/rootState';
 
+const tempTodos = [
+  {
+    createdAt: 'sfdas',
+    content: 'dummy data',
+    scheduled: null,
+    projectId: null,
+    userId: 'asdasfdsafdsa',
+    id: 'tester1',
+  },
+  {
+    createdAt: 'sfdas',
+    content: 'get this done!!!',
+    scheduled: null,
+    projectId: null,
+    userId: 'asdasfdsafdsa',
+    id: 'tester2',
+  },
+  {
+    createdAt: 'sfdas',
+    content: 'hurry up yo',
+    scheduled: null,
+    projectId: null,
+    userId: 'asdasfdsafdsa',
+    id: 'tester3',
+  },
+];
+
 const Inbox: FC = () => {
   const dispatch = useDispatch();
 
@@ -30,7 +57,7 @@ const Inbox: FC = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <TodoList
         todos={todoState.todos}
         onDeleteTodo={todoDeleteHander}

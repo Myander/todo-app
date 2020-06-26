@@ -18,5 +18,5 @@ export function* watchTodos() {
   yield takeLatest(todoActionTypes.ADD_TODO, addTodoSaga);
   yield takeEvery(todoActionTypes.DELETE_TODO, deleteTodoSaga);
   yield takeEvery(todoActionTypes.FETCH_TODOS, fetchTodosSaga);
-  yield takeEvery(todoActionTypes.EDIT_TODO, editTodoSaga);
+  yield takeLatest(todoActionTypes.EDIT_TODO, editTodoSaga);
 }

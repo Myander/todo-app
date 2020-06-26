@@ -15,7 +15,7 @@ export const todoReducer = (
     case actionTypes.ADD_TODO_INIT:
       return {
         todos: [...state.todos, action.payload.todo],
-        loading: true,
+        loading: false,
         error: null,
       };
     case actionTypes.ADD_TODO_SUCCESS:
@@ -39,7 +39,7 @@ export const todoReducer = (
     case actionTypes.DELETE_TODO_INIT:
       return {
         todos: state.todos.filter(todo => todo.id !== action.payload.id),
-        loading: true,
+        loading: false,
         error: null,
       };
     case actionTypes.DELETE_TODO_SUCCESS:
@@ -63,7 +63,7 @@ export const todoReducer = (
 
       return {
         todos: updatedTodosAfterEdit,
-        loading: true,
+        loading: false,
         error: null,
       };
     case actionTypes.EDIT_TODO_SUCCESS:

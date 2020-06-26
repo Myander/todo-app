@@ -12,6 +12,7 @@ declare module 'styled-components' {
       backgroundMain: string;
       backgroundSecondary: string;
       highlight: string;
+      btn_background: string;
     };
   }
 }
