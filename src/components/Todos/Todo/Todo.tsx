@@ -9,8 +9,12 @@ import {
   ButtonContainer,
 } from './Todo.styles';
 import Checkbox from '../../UI/Checkbox/Checkbox';
-import { EditIcon, DeleteIcon, IconButton } from '../../UI/Buttons/Icons';
-import { BlueButton, CancelButton } from '../../UI/Buttons/Buttons.styled';
+import { EditIcon, DeleteIcon } from '../../UI/Buttons/Icons';
+import {
+  BlueButton,
+  CancelButton,
+  IconButton,
+} from '../../UI/Buttons/Buttons.styled';
 
 interface TodoProps {
   todo: TodoModel;
@@ -35,6 +39,10 @@ const Todo: FC<TodoProps> = props => {
   };
 
   const handleSave = () => {
+    if (text === props.todo.content) {
+      setEdit(false);
+      return;
+    }
     props.onHandleEdit(props.todo.id, text);
     setEdit(false);
   };

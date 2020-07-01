@@ -21,6 +21,11 @@ export const StyledSideNav = styled.div<SideNavProps>`
     width: 30.5rem;
   }
 
+  & .link-active {
+    font-weight: 700;
+    background-color: ${props => props.theme.colors.highlight};
+  }
+
   & a {
     width: 100%;
     padding: 8px 8px 8px 32px;
@@ -28,13 +33,15 @@ export const StyledSideNav = styled.div<SideNavProps>`
     font-size: 1.6rem;
     font-weight: 600;
     color: ${props => props.theme.colors.main};
-    display: block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
   & a:hover {
     background-color: ${props => props.theme.colors.highlight};
   }
-  & a:focus {
-    font-weight: 700;
-    background-color: ${props => props.theme.colors.highlight};
+
+  & span {
+    margin-top: 3px;
   }
 `;

@@ -35,6 +35,7 @@ export const authSuccess = (
       email,
       loading: false,
       error: null,
+      loggedIn: true,
     },
   };
 };

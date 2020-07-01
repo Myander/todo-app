@@ -16,7 +16,33 @@ export const Button = styled.button`
   }
   &:hover {
     background-color: ${props => props.theme.colors.btn_background};
-    transition: color 0.3s ease-in;
+    transition: all 0.3s ease-in;
+  }
+`;
+
+interface BtnProps {
+  color: string;
+  backgroundColor: string;
+}
+
+export const DefaultButton = styled.button<BtnProps>`
+  border: none;
+  color: ${props => props.color};
+  background-color: ${props => props.backgroundColor};
+  outline: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  padding: 0.8rem 1.8rem;
+  margin: 0 0.75rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: filter 300ms;
+  &:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+  &:hover {
+    filter: brightness(0.85);
   }
 `;
 
@@ -42,5 +68,21 @@ export const CancelButton = styled(Button)`
   &:hover {
     text-decoration: underline;
     background-color: transparent;
+  }
+`;
+
+export const IconButton = styled.div`
+  padding: 3px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 10rem;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+  &:hover {
+    background-color: rgba(153, 153, 153, 0.3);
   }
 `;

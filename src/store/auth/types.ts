@@ -14,6 +14,7 @@ export interface AuthState {
   email: string | null;
   loading: boolean;
   error: string | null;
+  loggedIn: boolean;
 }
 
 export interface AuthError {

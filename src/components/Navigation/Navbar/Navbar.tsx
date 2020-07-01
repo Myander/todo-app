@@ -1,17 +1,23 @@
 import React, { FC } from 'react';
 import { NavContainer, NavItems } from './Navbar.styled';
-import Toggle from '../../UI/Toggle/Toggle';
-import { Button } from '../../UI/Buttons/Buttons.styled';
-import DrawerToggle from '../SideNav/DrawerToggle/DrawerToggle';
-import { Link } from 'react-router-dom';
+import { IconButton } from '../../UI/Buttons/Buttons.styled';
 import { useDispatch } from 'react-redux';
 import { authLogout } from '../../../store/auth/actions';
+import { BurgerIcon } from '../../UI/Buttons/Icons';
+import styled from 'styled-components';
+import Dropdown from '../../UI/Dropdown/Dropdown';
 
 interface NavProps {
   onHandleThemeToggle: () => void;
-  toggleDarkTheme: boolean;
   onToggleNav: () => void;
+  theme: string;
 }
+
+const LargeBurger = styled(BurgerIcon)`
+  width: 2.4rem;
+  height: 2.4rem;
+  color: ${props => props.theme.colors.main};
+`;
 
 const Navbar: FC<NavProps> = props => {
   const dispatch = useDispatch();
@@ -23,20 +29,16 @@ const Navbar: FC<NavProps> = props => {
   return (
     <NavContainer>
       <NavItems>
-        <DrawerToggle onToggleNav={props.onToggleNav} />
+        <IconButton onClick={props.onToggleNav}>
+          <LargeBurger />
+        </IconButton>
       </NavItems>
       <NavItems>
-        <Toggle
-          toggleTheme={props.onHandleThemeToggle}
-          darkTheme={props.toggleDarkTheme}
+        <Dropdown
+          onLogout={handleSignout}
+          theme={props.theme}
+          onToggleTheme={props.onHandleThemeToggle}
         />
-        <Link to="/login">
-          <Button>Log in</Button>
-        </Link>
-        <Link to="/signup">
-          <Button>Sign up</Button>
-        </Link>
-        <Button onClick={handleSignout}>Log out</Button>
       </NavItems>
     </NavContainer>
   );

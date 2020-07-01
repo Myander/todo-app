@@ -1,15 +1,27 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Form } from '../../components/UI/Forms/Form.styled';
 import { Field, ShowPassword } from '../../components/UI/Forms/Field.styled';
 //Simport firebase from '../../firebase';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/auth/actions';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/rootState';
 
 const Login: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
+  const selectAuthStatus = (state: RootState) => state.auth.loggedIn;
+  const isLoggedIn = useSelector(selectAuthStatus);
+  let { from } = (location.state as any) || { from: { pathname: '/' } };
+
+  useEffect(() => {
+    if (isLoggedIn) history.replace(from);
+  }, [isLoggedIn]);
 
   const emailChangeHandler = (event: React.SyntheticEvent) => {
     const target = event.target as HTMLInputElement;
@@ -22,8 +34,14 @@ const Login: FC = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    //console.log('user', email, password);
     dispatch(actions.authUser(email, password, false));
+  };
+
+  const handleHidePass = () => {
+    setShowPassword(false);
+  };
+  const handleShowPass = () => {
+    setShowPassword(true);
   };
 
   return (
@@ -51,8 +69,8 @@ const Login: FC = () => {
           <label htmlFor="password">Password</label>
           <ShowPassword
             className="toggle-password"
-            onMouseEnter={() => setShowPassword(true)}
-            onMouseLeave={() => setShowPassword(false)}
+            onMouseEnter={handleShowPass}
+            onMouseLeave={handleHidePass}
           >
             {showPassword ? '🙈' : '👁️'}
           </ShowPassword>

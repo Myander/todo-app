@@ -6,6 +6,7 @@ declare module 'styled-components' {
     transition: string;
     toggleBorder: string;
     gradient: string;
+    navSize: string;
     colors: {
       main: string;
       secondary: string;

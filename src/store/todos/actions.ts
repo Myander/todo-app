@@ -109,11 +109,15 @@ export const editTodoFailure = (error: string): TodoActionTypes => {
   };
 };
 
-export const fetchTodos = (): FetchTodosActionTypes => {
+export const fetchTodos = (uid: string): FetchTodosActionTypes => {
   return {
     type: actionTypes.FETCH_TODOS,
+    payload: {
+      uid,
+    },
   };
 };
+
 export const fetchTodosInit = (): FetchTodosActionTypes => {
   return {
     type: actionTypes.FETCH_TODOS_INIT,

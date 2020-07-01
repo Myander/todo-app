@@ -40,25 +40,11 @@ const Signup: FC = () => {
   };
 
   const handleSubmit = (e: React.SyntheticEvent) => {
-    console.log('SUBMIT');
     e.preventDefault();
     dispatch(actions.authUser(email, password, true));
-    // firebase
-    //   .auth()
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then(res => console.log(res))
-    //   .catch(function (error) {
-    //     // Handle Errors here.
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     if (errorCode === 'auth/weak-password') {
-    //       alert('The password is too weak.');
-    //     } else {
-    //       alert(errorMessage);
-    //     }
-    //     console.log(error);
-    //   });
   };
+
+  console.log('SIGN UP');
 
   return (
     <div>

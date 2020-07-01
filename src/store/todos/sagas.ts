@@ -69,6 +69,7 @@ export function* fetchTodosSaga(action: FetchTodos) {
     const querySnapshot = yield firebase
       .firestore()
       .collection(collectionName)
+      .where('userId', '==', action.payload.uid)
       .get();
     const todos: Todo[] = [];
     yield querySnapshot.forEach((doc: { data: () => any; id: string }) => {

@@ -7,6 +7,7 @@ const initialState: AuthState = {
   email: null,
   loading: false,
   error: null,
+  loggedIn: false,
 };
 
 export const authReducer = (
@@ -46,6 +47,7 @@ export const authReducer = (
         token: null,
         uid: null,
         email: null,
+        loggedIn: false,
       };
 
     case actionTypes.AUTH_LOGOUT_FAIL:

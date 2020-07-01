@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const NavContainer = styled.div`
+export const NavContainer = styled.nav`
   background: ${({ theme }) => theme.colors.backgroundSecondary};
   box-shadow: 0 2px 0.5rem 0 rgba(0, 0, 0, 0.16),
     0 2px 1rem 0 rgba(0, 0, 0, 0.12);
@@ -21,4 +21,10 @@ export const NavItems = styled.div`
   padding: 0 3rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+  position: relative;
+`;
+
+export const NavItem = styled.div`
+  position: relative;
 `;

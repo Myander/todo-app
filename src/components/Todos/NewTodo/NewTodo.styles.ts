@@ -4,6 +4,11 @@ import { PlusIcon } from '../../UI/Buttons/Icons';
 export const StyledPlusIcon = styled(PlusIcon)`
   color: #e0190b;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.8rem;
+  width: 1.8rem;
 `;
 
 export const PlusButton = styled.div`

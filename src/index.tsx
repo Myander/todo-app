@@ -8,8 +8,9 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { authReducer } from './store/auth/reducers';
 import { todoReducer } from './store/todos/reducers';
+import { settingsReducer } from './store/settings/reducers';
+import { watchAuth, watchTodos, watchSettings } from './store/sagaIndex';
 
-import { watchAuth, watchTodos } from './store/sagaIndex';
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
@@ -19,6 +20,7 @@ declare global {
 const rootReducer = combineReducers({
   todos: todoReducer,
   auth: authReducer,
+  settings: settingsReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -31,6 +33,7 @@ const store = createStore(
 
 sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchTodos);
+sagaMiddleware.run(watchSettings);
 
 ReactDOM.render(
   <React.StrictMode>

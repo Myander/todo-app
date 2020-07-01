@@ -11,25 +11,9 @@ const Icon = styled.svg.attrs({
 })``;
 
 const Svg = styled(Icon)<IconProps>`
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 2rem;
+  height: 2rem;
   color: ${props => props.theme.colors.secondary};
-`;
-
-export const IconButton = styled.div`
-  padding: 3px 3px;
-  border-radius: 3px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 10rem;
-  cursor: pointer;
-  &:not(:last-child) {
-    margin-right: 0.5rem;
-  }
-  &:hover {
-    background-color: rgba(153, 153, 153, 0.3);
-  }
 `;
 
 export const EditIcon: FC = () => (
@@ -56,6 +40,99 @@ export const PlusIcon: FC<IconProps> = ({ className }) => (
       fill="currentColor"
       fillRule="evenodd"
       d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z"
+    />
+  </Svg>
+);
+
+export const InboxIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 24 24" className={className}>
+    <path
+      fill="currentColor"
+      d="M19,15H15A3,3 0 0,1 12,18A3,3 0 0,1 9,15H5V5H19M19,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z"
+    />
+  </Svg>
+);
+
+export const CalenderIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 24 24" className={className}>
+    <path
+      fill="currentColor"
+      d="M7,12H9V14H7V12M21,6V20A2,2 0 0,1 19,22H5C3.89,22 3,21.1 3,20V6A2,2 0 0,1 5,4H6V2H8V4H16V2H18V4H19A2,2 0 0,1 21,6M5,8H19V6H5V8M19,20V10H5V20H19M15,14V12H17V14H15M11,14V12H13V14H11M7,16H9V18H7V16M15,18V16H17V18H15M11,18V16H13V18H11Z"
+    />
+  </Svg>
+);
+
+export const ClockIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 24 24" className={className}>
+    <path
+      fill="currentColor"
+      d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"
+    />
+  </Svg>
+);
+
+export const BurgerIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 24 24" className={className}>
+    <path
+      fill="currentColor"
+      d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
+    />
+  </Svg>
+);
+
+export const CogIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 24 24" className={className}>
+    <path
+      fill="currentColor"
+      d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"
+    />
+  </Svg>
+);
+export const BellIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 28 28" className={className}>
+    <path
+      fill="currentColor"
+      d="M7.847 23.488C9.207 23.488 11.443 23.363 14.467 22.806 13.944 24.228 12.581 25.247 10.98 25.247 9.649 25.247 8.483 24.542 7.825 23.488L7.847 23.488ZM24.923 15.73C25.17 17.002 24.278 18.127 22.27 19.076 21.17 19.595 18.724 20.583 14.684 21.369 11.568 21.974 9.285 22.113 7.848 22.113 7.421 22.113 7.068 22.101 6.79 22.085 4.574 21.958 3.324 21.248 3.077 19.976 2.702 18.049 3.295 17.305 4.278 16.073L4.537 15.748C5.2 14.907 5.459 14.081 5.035 11.902 4.086 7.022 6.284 3.687 11.064 2.753 15.846 1.83 19.134 4.096 20.083 8.977 20.506 11.156 21.056 11.824 21.986 12.355L21.986 12.356 22.348 12.561C23.72 13.335 24.548 13.802 24.923 15.73Z"
+    />
+  </Svg>
+);
+export const MessengerIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 28 28" className={className}>
+    <path
+      fill="currentColor"
+      d="M14 2.042c6.76 0 12 4.952 12 11.64S20.76 25.322 14 25.322a13.091 13.091 0 0 1-3.474-.461.956 .956 0 0 0-.641.047L7.5 25.959a.961.961 0 0 1-1.348-.849l-.065-2.134a.957.957 0 0 0-.322-.684A11.389 11.389 0 0 1 2 13.682C2 6.994 7.24 2.042 14 2.042ZM6.794 17.086a.57.57 0 0 0 .827.758l3.786-2.874a.722.722 0 0 1 .868 0l2.8 2.1a1.8 1.8 0 0 0 2.6-.481l3.525-5.592a.57.57 0 0 0-.827-.758l-3.786 2.874a.722.722 0 0 1-.868 0l-2.8-2.1a1.8 1.8 0 0 0-2.6.481Z"
+    />
+  </Svg>
+);
+export const CaretIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 320 512" className={className}>
+    <path
+      fill="currentColor"
+      d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+    />
+  </Svg>
+);
+export const ChevronIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 256 512" className={className}>
+    <path
+      fill="currentColor"
+      d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"
+    />
+  </Svg>
+);
+export const ArrowIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 448 512" className={className}>
+    <path
+      fill="currentColor"
+      d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"
+    />
+  </Svg>
+);
+export const BoltIcon: FC<IconProps> = ({ className }) => (
+  <Svg viewBox="0 0 320 512" className={className}>
+    <path
+      fill="currentColor"
+      d="M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z"
     />
   </Svg>
 );

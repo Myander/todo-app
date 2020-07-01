@@ -6,6 +6,7 @@ export const darkTheme: DefaultTheme = {
   transition: 'all 0.5s linear',
   toggleBorder: '#6B8096',
   gradient: 'linear-gradient(#091236, #1E215D)',
+  navSize: '60px',
   colors: {
     main: 'hsla(0,0%,100%,.87)',
     secondary: '#cccccc',
@@ -21,6 +22,7 @@ export const lightTheme: DefaultTheme = {
   transition: 'all 0.5s linear',
   toggleBorder: '#FFF',
   gradient: 'linear-gradient(#39598A, #79D7ED)',
+  navSize: '60px',
   colors: {
     main: '#202020',
     secondary: '#999999',

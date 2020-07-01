@@ -5,12 +5,15 @@ import { ToggleButton } from './Toggle.styled';
 
 interface ToggleProps {
   toggleTheme: () => void;
-  darkTheme: boolean;
+  theme: string;
 }
 
 const Toggle: React.FC<ToggleProps> = props => {
   return (
-    <ToggleButton darkTheme={props.darkTheme} onClick={props.toggleTheme}>
+    <ToggleButton
+      darkTheme={props.theme === 'dark' ? true : false}
+      onClick={props.toggleTheme}
+    >
       <SunIcon />
       <MoonIcon />
     </ToggleButton>

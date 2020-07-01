@@ -121,6 +121,9 @@ export interface EditTodoFailure {
 
 export interface FetchTodos {
   type: typeof FETCH_TODOS;
+  payload: {
+    uid: string;
+  };
 }
 
 export interface FetchTodosInit {
