@@ -1,7 +1,12 @@
 import React, { useRef, useState, Fragment, useEffect } from 'react';
 import { InputContainer, Input, RightButton } from '../Todo/Todo.styles';
 import { BlueButton, CancelButton } from '../../UI/Buttons/Buttons.styled';
-import { StyledPlusIcon, PlusButton, ElementContainer } from './NewTodo.styles';
+import {
+  IconContainer,
+  StyledPlusIcon,
+  PlusButton,
+  ElementContainer,
+} from './NewTodo.styles';
 
 interface NewTodoProps {
   onAddTodo: (text: string) => void;
@@ -52,7 +57,9 @@ const NewTodo: React.FC<NewTodoProps> = props => {
         <Fragment>{todoInput}</Fragment>
       ) : (
         <PlusButton onClick={handleShowInput}>
-          <StyledPlusIcon />
+          <IconContainer>
+            <StyledPlusIcon />
+          </IconContainer>
           Add Todo
         </PlusButton>
       )}

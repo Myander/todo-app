@@ -20,7 +20,7 @@ const LogoutBtn = styled(Button)`
   background-color: ${props => props.theme.colors.btn_background};
   transition: filter 300ms;
   &:hover {
-    filter: brightness(0.85);
+    filter: brightness(0.8);
   }
 `;
 

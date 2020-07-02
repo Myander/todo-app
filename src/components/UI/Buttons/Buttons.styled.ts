@@ -42,7 +42,7 @@ export const DefaultButton = styled.button<BtnProps>`
     cursor: not-allowed;
   }
   &:hover {
-    filter: brightness(0.85);
+    filter: brightness(0.8);
   }
 `;
 

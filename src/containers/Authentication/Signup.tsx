@@ -4,19 +4,36 @@ import {
   ShowPassword,
   StyledList,
 } from '../../components/UI/Forms/Field.styled';
-import { Form } from '../../components/UI/Forms/Form.styled';
+import {
+  Form,
+  Main,
+  Title,
+  FormContainer,
+} from '../../components/UI/Forms/Form.styled';
 import { Strength } from '../../components/UI/Forms/Strength.styled';
-//import firebase from '../../firebase';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/auth/actions';
+import { DefaultButton } from '../../components/UI/Buttons/Buttons.styled';
+
+const LowerFormContainer = styled(FormContainer)`
+  top: 40%;
+`;
+
+const SubmitButton = styled(DefaultButton)`
+  margin: 0;
+  margin-top: 1rem;
+`;
 
 const Signup: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
   const validations = useRef<any[]>([]);
   const [strength, setStrength] = useState(0);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
   const dispatch = useDispatch();
 
   function validatePassword(event: React.SyntheticEvent) {
@@ -24,7 +41,7 @@ const Signup: FC = () => {
     const target = event.target as HTMLInputElement;
     const password = target.value;
     validations.current = [
-      password.length >= 5,
+      password.length >= 6,
       password.search(/[A-Z]/) > -1,
       password.search(/[0-9]/) > -1,
       password.search(/[$&+,:;=?@#]/) > -1,
@@ -39,77 +56,109 @@ const Signup: FC = () => {
     setEmail(target.value);
   };
 
+  const Password2ChangeHandler = (event: React.SyntheticEvent) => {
+    const target = event.target as HTMLInputElement;
+    setPassword2(target.value);
+  };
+
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    if (password !== password2) {
+      alert('passwords do not match');
+      return;
+    }
     dispatch(actions.authUser(email, password, true));
   };
 
-  console.log('SIGN UP');
-
   return (
-    <div>
-      <Form onSubmit={handleSubmit}>
-        <Field>
-          <input
-            type="email"
-            name="email"
-            className="input"
-            placeholder=" "
-            value={email}
-            onChange={emailChangeHandler}
-          />
-          <label htmlFor="email">Email</label>
-        </Field>
+    <Main>
+      <Title>Sign up</Title>
+      <LowerFormContainer>
+        <Form onSubmit={handleSubmit}>
+          <Field>
+            <input
+              type="email"
+              name="email"
+              placeholder=" "
+              value={email}
+              onChange={emailChangeHandler}
+            />
+            <label htmlFor="email">Email</label>
+          </Field>
 
-        <Field>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            className="input"
-            placeholder=" "
-            value={password}
-            onChange={validatePassword}
-          />
-          <label htmlFor="password">Password</label>
-          <ShowPassword
-            className="toggle-password"
-            onMouseEnter={() => setShowPassword(true)}
-            onMouseLeave={() => setShowPassword(false)}
-          >
-            {showPassword ? '🙈' : '👁️'}
-          </ShowPassword>
-        </Field>
+          <Field>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              placeholder=" "
+              value={password}
+              onChange={validatePassword}
+            />
+            <label htmlFor="password">Password</label>
+            <ShowPassword
+              className="toggle-password"
+              onMouseEnter={() => setShowPassword(true)}
+              onMouseLeave={() => setShowPassword(false)}
+            >
+              {showPassword ? '🧐' : '👁️'}
+            </ShowPassword>
+          </Field>
 
-        <Strength strength={strength}>
-          <span />
-          <span />
-          <span />
-          <span />
-        </Strength>
-        <p>
-          already signed up?{' '}
-          <Link to="/login">
-            <strong>Go to login.</strong>
-          </Link>
-        </p>
-        <StyledList>
-          <li>
-            {' '}
-            {validations.current[0] ? '✔️' : '❌'} must be at least 5 characters
-          </li>
-          <li>
-            {' '}
-            {validations.current[1] ? '✔️' : '❌'} must contain a capital letter
-          </li>
-          <li> {validations.current[2] ? '✔️' : '❌'} must contain a number</li>
-          <li>
-            {' '}
-            {validations.current[3] ? '✔️' : '❌'} must contain one of
-            $&+,:;=?@#
-          </li>
-        </StyledList>
-        <button type="submit">Submit</button>
-      </Form>
-    </div>
+          <Field>
+            <input
+              type={showPassword2 ? 'text' : 'password'}
+              placeholder=" "
+              value={password2}
+              onChange={Password2ChangeHandler}
+            />
+            <label htmlFor="password">Confirm password</label>
+            <ShowPassword
+              className="toggle-password"
+              onMouseEnter={() => setShowPassword2(true)}
+              onMouseLeave={() => setShowPassword2(false)}
+            >
+              {showPassword2 ? '🧐' : '👁️'}
+            </ShowPassword>
+          </Field>
+
+          <Strength strength={strength}>
+            <span />
+            <span />
+            <span />
+            <span />
+          </Strength>
+          <p style={{ marginTop: '1rem', fontSize: '1.3rem' }}>
+            already signed up?{' '}
+            <Link to="/login">
+              <strong>Go to login.</strong>
+            </Link>
+          </p>
+          <StyledList>
+            <li>
+              {' '}
+              {validations.current[0] ? '✔️' : '❌'} must be at least 6
+              characters
+            </li>
+            <li>
+              {' '}
+              {validations.current[1] ? '✔️' : '❌'} must contain a capital
+              letter
+            </li>
+            <li>
+              {' '}
+              {validations.current[2] ? '✔️' : '❌'} must contain a number
+            </li>
+            <li>
+              {' '}
+              {validations.current[3] ? '✔️' : '❌'} must contain one of
+              $&+,:;=?@#
+            </li>
+          </StyledList>
+          <SubmitButton color="white" backgroundColor="#39b4ed" type="submit">
+            Submit
+          </SubmitButton>
+        </Form>
+      </LowerFormContainer>
+    </Main>
   );
 };
 

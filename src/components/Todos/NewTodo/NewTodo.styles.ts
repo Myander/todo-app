@@ -3,12 +3,21 @@ import { PlusIcon } from '../../UI/Buttons/Icons';
 
 export const StyledPlusIcon = styled(PlusIcon)`
   color: #e0190b;
+  height: 1.8rem;
+  width: 1.8rem;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+`;
+
+export const IconContainer = styled.div`
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 3px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1.8rem;
-  width: 1.8rem;
 `;
 
 export const PlusButton = styled.div`
@@ -25,8 +34,12 @@ export const PlusButton = styled.div`
   }
 
   &:hover svg {
-    background-color: #e0190b;
+    /* background-color: #e0190b; */
     color: white;
+  }
+
+  &:hover div {
+    background-color: #e0190b;
   }
 `;
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Field = styled.div`
   width: 100%;
   position: relative;
-  border-bottom: 2px dashed ${props => props.theme.colors.main};
+  border-bottom: 2px solid ${props => props.theme.colors.main};
   margin: 4rem auto 1rem;
 
   & input {

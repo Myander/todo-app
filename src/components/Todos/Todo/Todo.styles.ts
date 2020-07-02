@@ -7,6 +7,10 @@ export const TodoContent = styled.div`
   display: flex;
   justify-content: space-between;
   height: 4rem;
+
+  &:hover .todo-icon-container {
+    visibility: visible;
+  }
 `;
 
 export const ItemContainer = styled.div`

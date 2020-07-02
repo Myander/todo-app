@@ -18,31 +18,27 @@ export const Strength = styled.div<StrengthProps>`
   }
 
   & span:nth-child(1) {
-    background: linear-gradient(to right, red, orangered);
-    box-shadow: ${props =>
+    background: ${props =>
       props.strength > 0
-        ? 'none'
-        : 'inset 0px 22px' + props.theme.colors.backgroundSecondary};
+        ? 'linear-gradient(to right, red, orangered)'
+        : props.theme.colors.backgroundSecondary};
   }
   & span:nth-child(2) {
-    background: linear-gradient(to right, orangered, yellow);
-    box-shadow: ${props =>
+    background: ${props =>
       props.strength > 1
-        ? 'none'
-        : 'inset 0px 22px' + props.theme.colors.backgroundSecondary};
+        ? 'linear-gradient(to right, orangered, yellow)'
+        : props.theme.colors.backgroundSecondary};
   }
   & span:nth-child(3) {
-    background: linear-gradient(to right, yellow, yellowgreen);
-    box-shadow: ${props =>
+    background: ${props =>
       props.strength > 2
-        ? 'none'
-        : 'inset 0px 22px' + props.theme.colors.backgroundSecondary};
+        ? 'linear-gradient(to right, yellow, yellowgreen)'
+        : props.theme.colors.backgroundSecondary};
   }
   & span:nth-child(4) {
-    background: linear-gradient(to right, yellowgreen, green);
-    box-shadow: ${props =>
+    background: ${props =>
       props.strength > 3
-        ? 'none'
-        : 'inset 0px 22px' + props.theme.colors.backgroundSecondary};
+        ? 'linear-gradient(to right, yellowgreen, green)'
+        : props.theme.colors.backgroundSecondary};
   }
 `;

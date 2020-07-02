@@ -15,6 +15,11 @@ import {
   CancelButton,
   IconButton,
 } from '../../UI/Buttons/Buttons.styled';
+import styled from 'styled-components';
+
+const IconContainer = styled(ItemContainer)`
+  visibility: hidden;
+`;
 
 interface TodoProps {
   todo: TodoModel;
@@ -78,14 +83,14 @@ const Todo: FC<TodoProps> = props => {
         <Checkbox onCompleteTodo={props.onDeleteTodo} id={props.todo.id} />
         {props.todo.content}
       </ItemContainer>
-      <ItemContainer>
+      <IconContainer className="todo-icon-container">
         <IconButton onClick={toggleEdit}>
           <EditIcon />
         </IconButton>
         <IconButton onClick={handleToggleModal}>
           <DeleteIcon />
         </IconButton>
-      </ItemContainer>
+      </IconContainer>
     </TodoContent>
   );
 

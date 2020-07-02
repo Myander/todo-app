@@ -10,7 +10,7 @@ export const Dropdown = styled.div`
 export const Menu = styled.nav`
   position: absolute;
   display: none;
-  top: 2rem;
+  top: 3rem;
   left: 0;
   transform: translateX(-80%);
   background-color: ${props => props.theme.colors.backgroundSecondary};
