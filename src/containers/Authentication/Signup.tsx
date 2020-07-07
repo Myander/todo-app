@@ -12,10 +12,11 @@ import {
 } from '../../components/UI/Forms/Form.styled';
 import { Strength } from '../../components/UI/Forms/Strength.styled';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/auth/actions';
 import { DefaultButton } from '../../components/UI/Buttons/Buttons.styled';
+import { RootState } from '../../store/rootState';
 
 const LowerFormContainer = styled(FormContainer)`
   top: 40%;
@@ -35,6 +36,11 @@ const Signup: FC = () => {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const dispatch = useDispatch();
+  const selectLoggedIn = (state: RootState) => state.auth.loggedIn;
+  const isLoggedIn = useSelector(selectLoggedIn);
+
+  if (isLoggedIn || localStorage.getItem('isLoggedIn') === 'true')
+    return <Redirect to="/home" />;
 
   function validatePassword(event: React.SyntheticEvent) {
     event.preventDefault();

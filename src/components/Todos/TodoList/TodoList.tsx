@@ -9,7 +9,7 @@ import { CancelButton, RedButton } from '../../UI/Buttons/Buttons.styled';
 interface TodoListProps {
   todos: TodoModel[];
   onDeleteTodo: (id: string) => void;
-  onHandleEdit: (id: string, content: string) => void;
+  onHandleEdit: (id: string, content: string, scheduled: string | null) => void;
   loading: boolean;
 }
 

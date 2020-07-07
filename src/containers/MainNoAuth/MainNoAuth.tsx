@@ -5,7 +5,9 @@ import {
   Button,
 } from '../../components/UI/Buttons/Buttons.styled';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/rootState';
 
 const ActionButton = styled(Button)`
   color: #dadce1;
@@ -17,7 +19,14 @@ const ActionButton = styled(Button)`
     background-color: #0052cc;
   }
 `;
+
 const MainNoAuth = () => {
+  const selectLoggedIn = (state: RootState) => state.auth.loggedIn;
+  const isLoggedIn = useSelector(selectLoggedIn);
+
+  if (isLoggedIn || localStorage.getItem('isLoggedIn') === 'true')
+    return <Redirect to="/home" />;
+
   return (
     <div>
       <Navbar>

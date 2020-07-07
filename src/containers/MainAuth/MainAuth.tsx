@@ -14,6 +14,7 @@ import * as actions from '../../store/todos/actions';
 import * as settingsActions from '../../store/settings/actions';
 import { RootState } from '../../store/rootState';
 import { Spinner } from '../../components/UI/Spinner/Spinner.styled';
+import Today from './Today/Today';
 
 const MainAuth: FC = () => {
   const [toggleNav, setToggleNav] = useState(true);
@@ -35,16 +36,20 @@ const MainAuth: FC = () => {
     dispatch(settingsActions.fetchSettings(userId!));
   }, [dispatch]);
 
-  const todoAddHandler = (text: string) => {
-    dispatch(actions.addTodo(text, null, uid!));
+  const todoAddHandler = (text: string, scheduled: string | null) => {
+    dispatch(actions.addTodo(text, scheduled, uid!));
   };
 
   const todoDeleteHander = (id: string) => {
     dispatch(actions.deleteTodo(id));
   };
 
-  const todoEditHandler = (id: string, content: string) => {
-    dispatch(actions.editTodo(id, content));
+  const todoEditHandler = (
+    id: string,
+    content: string,
+    scheduled: string | null
+  ) => {
+    dispatch(actions.editTodo(id, content, scheduled));
   };
 
   const themeChangeHandler = () => {
@@ -75,7 +80,13 @@ const MainAuth: FC = () => {
               />
             </Route>
             <Route path={`${path}/today`}>
-              <h3>Today</h3>
+              <Today
+                onAddTodo={todoAddHandler}
+                onDeleteTodo={todoDeleteHander}
+                onEditTodo={todoEditHandler}
+                todos={todoState.todos}
+                loading={todoState.loading}
+              />
             </Route>
             <Route path={`${path}/upcoming`}>
               <h3>Upcoming</h3>

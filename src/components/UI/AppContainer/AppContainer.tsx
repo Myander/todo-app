@@ -15,7 +15,7 @@ export const Content = styled.div<ContentProps>`
   transition: all 0.5s;
   display: flex;
   justify-content: center;
-  padding: 8rem 10rem;
+  padding: 4rem 10rem;
   @media screen and (min-width: 780px) {
     margin-left: ${props => (props.toggleNav ? '30.5rem' : 0)};
     /* width: 30.5rem; */

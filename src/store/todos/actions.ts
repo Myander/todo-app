@@ -77,21 +77,31 @@ export const deleteTodoFailure = (error: string): TodoActionTypes => {
   };
 };
 
-export const editTodo = (id: string, content: string): TodoActionTypes => {
+export const editTodo = (
+  id: string,
+  content: string,
+  scheduled: string | null
+): TodoActionTypes => {
   return {
     type: actionTypes.EDIT_TODO,
     payload: {
       id,
       content,
+      scheduled,
     },
   };
 };
-export const editTodoInit = (id: string, content: string): TodoActionTypes => {
+export const editTodoInit = (
+  id: string,
+  content: string,
+  scheduled: string | null
+): TodoActionTypes => {
   return {
     type: actionTypes.EDIT_TODO_INIT,
     payload: {
       id,
       content,
+      scheduled,
     },
   };
 };

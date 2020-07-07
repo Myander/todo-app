@@ -42,7 +42,7 @@ export const DefaultButton = styled.button<BtnProps>`
     cursor: not-allowed;
   }
   &:hover {
-    filter: brightness(0.8);
+    filter: brightness(0.85);
   }
 `;
 
@@ -72,6 +72,7 @@ export const CancelButton = styled(Button)`
 `;
 
 export const IconButton = styled.div`
+  position: relative;
   padding: 3px;
   border-radius: 3px;
   display: flex;

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Form,
   FormContainer,
@@ -9,7 +9,7 @@ import { Field, ShowPassword } from '../../components/UI/Forms/Field.styled';
 //Simport firebase from '../../firebase';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/auth/actions';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/rootState';
 import { DefaultButton } from '../../components/UI/Buttons/Buttons.styled';
@@ -25,15 +25,8 @@ const Login: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
   const selectAuthStatus = (state: RootState) => state.auth.loggedIn;
   const isLoggedIn = useSelector(selectAuthStatus);
-  let { from } = (location.state as any) || { from: { pathname: '/' } };
-
-  useEffect(() => {
-    if (isLoggedIn) history.replace(from);
-  }, [isLoggedIn]);
 
   const emailChangeHandler = (event: React.SyntheticEvent) => {
     const target = event.target as HTMLInputElement;
@@ -55,6 +48,9 @@ const Login: FC = () => {
   const handleShowPass = () => {
     setShowPassword(true);
   };
+
+  if (isLoggedIn || localStorage.getItem('isLoggedIn') === 'true')
+    return <Redirect to="/home" />;
 
   return (
     <Main>

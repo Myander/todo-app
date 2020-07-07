@@ -45,7 +45,13 @@ export function* deleteTodoSaga(action: DeleteTodo) {
 }
 
 export function* editTodoSaga(action: EditTodo) {
-  yield put(actions.editTodoInit(action.payload.id, action.payload.content));
+  yield put(
+    actions.editTodoInit(
+      action.payload.id,
+      action.payload.content,
+      action.payload.scheduled
+    )
+  );
 
   try {
     yield firebase
@@ -54,6 +60,7 @@ export function* editTodoSaga(action: EditTodo) {
       .doc(action.payload.id)
       .update({
         content: action.payload.content,
+        scheduled: action.payload.scheduled,
       });
 
     yield put(actions.editTodoSuccess());

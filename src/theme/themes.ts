@@ -28,7 +28,7 @@ export const lightTheme: DefaultTheme = {
     secondary: '#999999',
     backgroundMain: '#fff',
     backgroundSecondary: '#ededed',
-    highlight: 'hsla(0,0%,100%,.87)',
+    highlight: '#f1f1f1',
     btn_background: 'rgba(0, 0, 0, 0.2)',
   },
 };

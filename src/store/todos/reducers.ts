@@ -57,10 +57,11 @@ export const todoReducer = (
     case actionTypes.EDIT_TODO_INIT:
       const updatedTodosAfterEdit = [...state.todos];
       updatedTodosAfterEdit.forEach(todo => {
-        if (todo.id === action.payload.id)
+        if (todo.id === action.payload.id) {
           todo.content = action.payload.content;
+          todo.scheduled = action.payload.scheduled;
+        }
       });
-
       return {
         todos: updatedTodosAfterEdit,
         loading: false,

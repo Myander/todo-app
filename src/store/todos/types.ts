@@ -97,6 +97,7 @@ export interface EditTodo {
   payload: {
     id: string;
     content: string;
+    scheduled: string | null;
   };
 }
 
@@ -105,6 +106,7 @@ export interface EditTodoInit {
   payload: {
     id: string;
     content: string;
+    scheduled: string | null;
   };
 }
 
