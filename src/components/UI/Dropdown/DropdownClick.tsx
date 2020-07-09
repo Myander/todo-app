@@ -9,11 +9,17 @@ interface CTButtonProps {
 }
 const ConditionalToggleButton = styled(IconButton)<CTButtonProps>`
   visibility: ${props => (props.show || props.toggle ? 'visible' : 'hidden')};
+  position: relative;
+  &:hover .todo-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
 `;
 
 interface DropdownProps {
   showIcon: boolean;
   icon?: React.ReactNode;
+  tooltip?: React.ReactNode;
   open: boolean;
   onHandleToggle: () => void;
 }
@@ -51,6 +57,7 @@ const DropdownClick: FC<DropdownProps> = props => {
       ref={modalRef}
     >
       {props.icon}
+      {props.tooltip}
       {props.open && (
         <Dropdown onClick={e => e.stopPropagation()}>{props.children}</Dropdown>
       )}

@@ -6,7 +6,6 @@ import {
   Title,
 } from '../../components/UI/Forms/Form.styled';
 import { Field, ShowPassword } from '../../components/UI/Forms/Field.styled';
-//Simport firebase from '../../firebase';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/auth/actions';
 import { Redirect } from 'react-router-dom';

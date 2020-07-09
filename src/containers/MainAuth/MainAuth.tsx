@@ -15,6 +15,7 @@ import * as settingsActions from '../../store/settings/actions';
 import { RootState } from '../../store/rootState';
 import { Spinner } from '../../components/UI/Spinner/Spinner.styled';
 import Today from './Today/Today';
+import Upcoming from './Upcoming/Upcoming';
 
 const MainAuth: FC = () => {
   const [toggleNav, setToggleNav] = useState(true);
@@ -89,7 +90,13 @@ const MainAuth: FC = () => {
               />
             </Route>
             <Route path={`${path}/upcoming`}>
-              <h3>Upcoming</h3>
+              <Upcoming
+                onAddTodo={todoAddHandler}
+                onDeleteTodo={todoDeleteHander}
+                onEditTodo={todoEditHandler}
+                todos={todoState.todos}
+                loading={todoState.loading}
+              />
             </Route>
           </Switch>
         </Content>

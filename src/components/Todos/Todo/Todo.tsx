@@ -26,6 +26,7 @@ import styled from 'styled-components';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import DropdownClick from '../../UI/Dropdown/DropdownClick';
+import { Tooltip } from '../../UI/Tooltip/Tooltip.styles';
 
 const months = [
   'January',
@@ -47,6 +48,11 @@ interface TButtonProps {
 }
 const ToggleButton = styled(IconButton)<TButtonProps>`
   visibility: ${props => (props.show ? 'visible' : 'hidden')};
+  position: relative;
+  &:hover .todo-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
 `;
 
 interface TodoProps {
@@ -69,10 +75,6 @@ const Todo: FC<TodoProps> = props => {
   const modifiers = {
     days: { daysOfWeek: [1, 2, 3, 4, 5, 6, 7] },
   };
-  // const handleChange = (event: React.FormEvent) => {
-  //   const target = event.target as HTMLInputElement;
-  //   setText(target.value);
-  // };
 
   const handleCancel = () => {
     setEdit(currEdit => !currEdit);
@@ -145,19 +147,6 @@ const Todo: FC<TodoProps> = props => {
     }
   }
 
-  // const todoInput = (
-  //   <div>
-  //     <InputContainer>
-  //       <Input value={text} onChange={handleChange} ref={inputRef} />
-  //       {/* <RightButton>Schedule</RightButton> */}
-  //     </InputContainer>
-  //     <ButtonContainer>
-  //       <BlueButton onClick={handleSave}>Save</BlueButton>
-  //       <CancelButton onClick={handleCancel}>Cancel</CancelButton>
-  //     </ButtonContainer>
-  //   </div>
-  // );
-
   const todoInput2 = (
     <div style={{ marginBottom: '10px' }}>
       <EditingArea>
@@ -178,6 +167,7 @@ const Todo: FC<TodoProps> = props => {
           <DropdownClick
             showIcon={true}
             icon={<CalenderRangeIcon />}
+            tooltip={<Tooltip className="todo-tooltip">Schedule</Tooltip>}
             open={toggleDropdown}
             onHandleToggle={handleToggleScheduleDropdown}
           >
@@ -219,10 +209,12 @@ const Todo: FC<TodoProps> = props => {
         <ItemContainer>
           <ToggleButton onClick={toggleEdit} show={showIcons}>
             <EditIcon />
+            <Tooltip className="todo-tooltip">Edit</Tooltip>
           </ToggleButton>
           <DropdownClick
             showIcon={showIcons}
             icon={<CalenderRangeIcon />}
+            tooltip={<Tooltip className="todo-tooltip">Schedule</Tooltip>}
             open={toggleDropdown}
             onHandleToggle={handleToggleScheduleDropdown}
           >
@@ -239,6 +231,7 @@ const Todo: FC<TodoProps> = props => {
           </DropdownClick>
           <ToggleButton onClick={handleToggleModal} show={showIcons}>
             <DeleteIcon />
+            <Tooltip className="todo-tooltip">Delete</Tooltip>
           </ToggleButton>
         </ItemContainer>
       </TodoContent>
