@@ -84,7 +84,7 @@ interface DayTextProps {
 }
 
 export const DayText = styled.div<DayTextProps>`
-  color: ${props => (props.isCurrDay ? 'orange' : 'rgba(255, 255, 255, 0.7)')};
+  color: ${props => (props.isCurrDay ? 'orange' : props.theme.colors.main)};
 `;
 
 interface DateTextProps {
@@ -95,22 +95,10 @@ interface DateTextProps {
 export const DateText = styled.div<DateTextProps>`
   color: ${props =>
     props.isDisabled
-      ? 'rgba(255, 255, 255, 0.4)'
+      ? props.theme.colors.disabled
       : props.isCurrDay
       ? 'orange'
       : props.theme.colors.main};
-`;
-
-export const CButton = styled.button`
-  padding: 5px 8px;
-  color: blueviolet;
-  background-color: ${props => props.theme.colors.secondary};
-  &:not(:last-child) {
-    margin-right: 0.5rem;
-  }
-  &:focus {
-    outline: none;
-  }
 `;
 
 export const DayList = styled.ul`

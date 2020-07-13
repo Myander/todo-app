@@ -219,8 +219,6 @@ const Upcoming: FC<UpcomingProps> = props => {
             </DropdownGeneric>
           </DateButton>
           <ButtonContainer>
-            {/* <CButton onClick={prevWeek}>{'<'}</CButton> */}
-            {/* <CButton onClick={nextWeek}>{'>'}</CButton> */}
             <IconButton onClick={prevWeek}>
               <ChevronLeftIcon />
             </IconButton>
