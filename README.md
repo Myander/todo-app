@@ -18,7 +18,7 @@ import 'firebase/auth';
 firebase.initializeApp({
   apiKey: 'YOUR_API_KEY',
   authDomain: 'localhost',
-  projectId: 'YOUR_PROJED_ID',
+  projectId: 'YOUR_PROJECT_ID',
 });
 
 export default firebase;
