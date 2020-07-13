@@ -91,6 +91,7 @@ const MainAuth: FC = () => {
             </Route>
             <Route path={`${path}/upcoming`}>
               <Upcoming
+                toggleNav={toggleNav}
                 onAddTodo={todoAddHandler}
                 onDeleteTodo={todoDeleteHander}
                 onEditTodo={todoEditHandler}

@@ -16,8 +16,8 @@ export const ToggleButton = styled.button<ToggleProps>`
   overflow: hidden;
   padding: 0.5rem;
   /* position: relative; */
-  width: 9.5rem;
-  height: 4rem;
+  width: 10rem;
+  height: 5rem;
   outline: none;
   margin: 0 auto;
   svg {

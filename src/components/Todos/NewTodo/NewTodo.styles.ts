@@ -46,3 +46,8 @@ export const PlusButton = styled.div`
 export const ElementContainer = styled.div`
   margin-top: 1rem;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  margin-top: 0.5rem;
+`;

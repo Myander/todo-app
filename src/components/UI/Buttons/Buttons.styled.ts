@@ -6,6 +6,8 @@ export const Button = styled.button`
   background-color: transparent;
   outline: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   padding: 0.8rem 1.8rem;
   margin: 0 0.75rem;
   font-weight: 600;
@@ -16,7 +18,7 @@ export const Button = styled.button`
   }
   &:hover {
     background-color: ${props => props.theme.colors.btn_background};
-    transition: all 0.3s ease-in;
+    transition: all 0.2s;
   }
 `;
 

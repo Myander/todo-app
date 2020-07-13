@@ -34,6 +34,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   width: 100%;
   max-width: 800px;
+  padding-top: 4rem;
 `;
 
 const Title = styled.div`

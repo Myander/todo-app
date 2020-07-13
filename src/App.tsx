@@ -21,6 +21,12 @@ const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 62.5%; /* 1 rem = 10px*/
+    @media screen and (max-width: 1200px) {
+      font-size: 56.25%;
+    }
+    @media screen and (max-width: 900px) {
+      font-size: 50%;
+    }
   };
   body {
     color: ${props => props.theme.colors.main};

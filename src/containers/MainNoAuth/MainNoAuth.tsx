@@ -15,6 +15,8 @@ const ActionButton = styled(Button)`
   padding: 1.2rem 3rem;
   margin-top: 1rem;
   font-size: 2rem;
+  text-decoration: none;
+
   &:hover {
     background-color: #0052cc;
   }
@@ -31,7 +33,7 @@ const MainNoAuth = () => {
     <div>
       <Navbar>
         <ItemContainer>
-          <h3>Placeholder</h3>
+          <h2>TodoLite</h2>
         </ItemContainer>
         <ItemContainer>
           <Link to="/login">
@@ -54,9 +56,11 @@ const MainNoAuth = () => {
       </Navbar>
       <MainContainer>
         <MainText>
-          Organize it all <br />
-          with TodoLite <br />
-          <Link to="/signup">
+          <div>
+            Organize it all <br />
+            with TodoLite
+          </div>
+          <Link to="/signup" style={{ textDecoration: 'none' }}>
             <ActionButton>Get Started</ActionButton>
           </Link>
         </MainText>

@@ -7,6 +7,7 @@ import { Todo as TodoModel } from '../../../store/todos/types';
 const Container = styled.div`
   width: 100%;
   max-width: 800px;
+  padding-top: 4rem;
 `;
 
 const Title = styled.div`

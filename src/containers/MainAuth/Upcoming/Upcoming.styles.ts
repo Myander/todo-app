@@ -16,6 +16,20 @@ export const Dropdown = styled.div`
   z-index: 4000;
 `;
 
+export const Container = styled.div`
+  width: 100%;
+  max-width: 800px;
+`;
+
+export const Nav = styled.nav`
+  position: sticky;
+  top: 4.5rem;
+  width: 100%;
+  padding-top: 4rem;
+  background: ${props => props.theme.colors.backgroundMain};
+  z-index: 5;
+`;
+
 export const DateButton = styled.div`
   display: inline-block;
   position: relative;
@@ -29,7 +43,7 @@ export const Content = styled.div`
 `;
 
 export const CarouselContainer = styled.div`
-  background: ${props => props.theme.colors.backgroundSecondary};
+  /* background: ${props => props.theme.colors.backgroundSecondary}; */
 `;
 
 export const Carousel = styled.div`
@@ -63,13 +77,6 @@ export const CarouselItem = styled.button<ItemProps>`
     cursor: auto;
     background-color: transparent;
   }
-
-  /* &:disabled .day-date-text {
-    color: rgba(255, 255, 255, 0.4);
-  } */
-  /* &:not(:last-child) {
-    margin-right: 1rem;
-  } */
 `;
 
 interface DayTextProps {
@@ -104,4 +111,27 @@ export const CButton = styled.button`
   &:focus {
     outline: none;
   }
+`;
+
+export const DayList = styled.ul`
+  padding-top: 2rem;
+  list-style-type: none;
+`;
+
+export const DayListItem = styled.li`
+  font-size: 1.6rem;
+  color: ${props => props.theme.colors.secondary};
+  margin-bottom: 3rem;
+`;
+
+export const ListItemTitle = styled.div`
+  border-bottom: 1px solid ${props => props.theme.colors.highlight};
+  padding-bottom: 2px;
+`;
+
+export const ListItemContent = styled.div``;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;

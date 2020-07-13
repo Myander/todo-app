@@ -25,15 +25,15 @@ export const Menu = styled.nav`
 
 export const MenuContent = styled.div`
   min-width: 160px;
+  text-align: center;
 `;
 
 export const MenuItem = styled.div`
-  width: 100%;
   padding: 2rem 1rem;
-  margin: 2px;
-  
+  margin: 2px auto;
+  display:flex;
+  justify-content: center;
   text-decoration: none;
-  display: block;
   
 
   /* &:hover {

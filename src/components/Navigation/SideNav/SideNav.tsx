@@ -35,15 +35,28 @@ const SideNav: FC<SideNavProps> = props => {
 
   return (
     <StyledSideNav open={props.toggleNav}>
-      <NavLink exact to={`${url}`} activeClassName="link-active">
+      <NavLink
+        exact
+        to={`${url}`}
+        activeClassName="link-active"
+        onClick={props.onToggleNav}
+      >
         <Inbox />
         <span>Inbox</span>
       </NavLink>
-      <NavLink to={`${url}/today`} activeClassName="link-active">
+      <NavLink
+        to={`${url}/today`}
+        activeClassName="link-active"
+        onClick={props.onToggleNav}
+      >
         <Clock />
         <span>Today</span>
       </NavLink>
-      <NavLink to={`${url}/upcoming`} activeClassName="link-active">
+      <NavLink
+        to={`${url}/upcoming`}
+        activeClassName="link-active"
+        onClick={props.onToggleNav}
+      >
         <Calender />
         <span>Upcoming</span>
       </NavLink>

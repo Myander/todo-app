@@ -236,11 +236,11 @@ const Todo: FC<TodoProps> = props => {
         </ItemContainer>
       </TodoContent>
       <DateContainer>
-        {selectedDay
+        {/* {selectedDay
           ? months[selectedDay?.getMonth()] +
             ' ' +
             selectedDay?.getDate().toString()
-          : null}
+          : null} */}
       </DateContainer>
     </TodoContainer>
   );

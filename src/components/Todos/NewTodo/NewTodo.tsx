@@ -1,13 +1,17 @@
 import React, { useRef, useState, Fragment, useEffect } from 'react';
 import { BlueButton, CancelButton } from '../../UI/Buttons/Buttons.styled';
-import { IconContainer, StyledPlusIcon, PlusButton } from './NewTodo.styles';
+import {
+  IconContainer,
+  StyledPlusIcon,
+  PlusButton,
+  ButtonContainer,
+} from './NewTodo.styles';
 import {
   EditingArea,
   EditingContent,
   DrafEditorContainer,
   DraftEditor,
   ItemContainer,
-  ButtonContainer,
 } from '../Todo/Todo.styles';
 import DropdownClick from '../../UI/Dropdown/DropdownClick';
 import DayPicker from 'react-day-picker';
@@ -15,13 +19,16 @@ import 'react-day-picker/lib/style.css';
 import { CalenderRangeIcon } from '../../UI/Buttons/Icons';
 interface NewTodoProps {
   onAddTodo: (text: string, scheduled: string | null) => void;
+  initialDate?: Date;
 }
 
 const NewTodo: React.FC<NewTodoProps> = props => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [add, setAdd] = useState(false);
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
+  const [selectedDay, setSelectedDay] = useState<Date | undefined>(
+    props.initialDate ? props.initialDate : undefined
+  );
   const modifiers = {
     days: { daysOfWeek: [1, 2, 3, 4, 5, 6, 7] },
   };
@@ -90,20 +97,7 @@ const NewTodo: React.FC<NewTodoProps> = props => {
     }
   }
 
-  // const todoInput = (
-  //   <ElementContainer>
-  //     <InputContainer>
-  //       <Input ref={inputRef} onChange={handleChange} value={content} />
-  //       <RightButton>Schedule</RightButton>
-  //     </InputContainer>
-  //     <div style={{ marginTop: '10px' }}>
-  //       <BlueButton onClick={handleAddTodo}>Save</BlueButton>
-  //       <CancelButton onClick={handleShowInput}>Cancel</CancelButton>
-  //     </div>
-  //   </ElementContainer>
-  // );
-
-  const todoInput2 = (
+  const todoInput = (
     <div style={{ marginBottom: '10px' }}>
       <EditingArea>
         <EditingContent>
@@ -154,7 +148,7 @@ const NewTodo: React.FC<NewTodoProps> = props => {
   return (
     <div>
       {add ? (
-        <Fragment>{todoInput2}</Fragment>
+        <Fragment>{todoInput}</Fragment>
       ) : (
         <PlusButton onClick={handleShowInput}>
           <IconContainer>

@@ -41,4 +41,7 @@ export const MainText = styled.div`
   font-size: 5rem;
   line-height: 5.5rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

@@ -13,7 +13,7 @@ export const Field = styled.div`
     margin: 0;
     width: 100%;
     padding: 0.5rem 0;
-    background: none;
+    background: #e6f4ff;
     color: white;
     font-size: 1.8rem;
     font-weight: bold;
