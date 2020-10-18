@@ -75,6 +75,8 @@ export const RightButton = styled.span`
 
 export const ButtonContainer = styled.div`
   margin-top: 1rem;
+  display: flex;
+  align-items: center;
 `;
 
 export const EditingArea = styled.div`

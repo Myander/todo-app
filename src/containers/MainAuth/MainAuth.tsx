@@ -37,8 +37,11 @@ const MainAuth: FC = () => {
     dispatch(settingsActions.fetchSettings(userId!));
   }, [dispatch]);
 
-  const todoAddHandler = (text: string, scheduled: string | null) => {
-    dispatch(actions.addTodo(text, scheduled, uid!));
+  const todoAddHandler = (userId: string) => (
+    text: string,
+    scheduled: string | null
+  ) => {
+    dispatch(actions.addTodo(text, scheduled, userId!));
   };
 
   const todoDeleteHander = (id: string) => {
@@ -73,7 +76,7 @@ const MainAuth: FC = () => {
           <Switch>
             <Route exact path={path}>
               <Inbox
-                onAddTodo={todoAddHandler}
+                onAddTodo={todoAddHandler(uid)}
                 onDeleteTodo={todoDeleteHander}
                 onEditTodo={todoEditHandler}
                 todos={todoState.todos}
@@ -82,7 +85,7 @@ const MainAuth: FC = () => {
             </Route>
             <Route path={`${path}/today`}>
               <Today
-                onAddTodo={todoAddHandler}
+                onAddTodo={todoAddHandler(uid)}
                 onDeleteTodo={todoDeleteHander}
                 onEditTodo={todoEditHandler}
                 todos={todoState.todos}
@@ -92,7 +95,7 @@ const MainAuth: FC = () => {
             <Route path={`${path}/upcoming`}>
               <Upcoming
                 toggleNav={toggleNav}
-                onAddTodo={todoAddHandler}
+                onAddTodo={todoAddHandler(uid)}
                 onDeleteTodo={todoDeleteHander}
                 onEditTodo={todoEditHandler}
                 todos={todoState.todos}

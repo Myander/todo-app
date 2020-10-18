@@ -63,8 +63,9 @@ interface TodoProps {
 }
 
 const Todo: FC<TodoProps> = props => {
+  const text = props.todo.content;
   const [edit, setEdit] = useState(false);
-  const [text, setText] = useState(props.todo.content);
+  // const [text, setText] = useState(props.todo.content);
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(
     props.todo.scheduled ? new Date(parseInt(props.todo.scheduled)) : undefined
   );
@@ -78,18 +79,24 @@ const Todo: FC<TodoProps> = props => {
 
   const handleCancel = () => {
     setEdit(currEdit => !currEdit);
-    setText(props.todo.content);
+    // setText(props.todo.content);
   };
 
   const handleSave = () => {
-    if (inputRef.current!.innerHTML === props.todo.content) {
+    let inputText = inputRef.current!.innerHTML;
+    if (inputText === props.todo.content) {
       setEdit(false);
       return;
     }
+    //console.log('hmmm', inputRef.current!.innerHTML, props.todo.content, text);
     if (selectedDay) {
-      props.onHandleEdit(props.todo.id, text, selectedDay.getTime().toString());
+      props.onHandleEdit(
+        props.todo.id,
+        inputText,
+        selectedDay.getTime().toString()
+      );
     } else {
-      props.onHandleEdit(props.todo.id, text, null);
+      props.onHandleEdit(props.todo.id, inputText, null);
     }
     setEdit(false);
   };
@@ -159,7 +166,7 @@ const Todo: FC<TodoProps> = props => {
               spellCheck="true"
               suppressContentEditableWarning={true}
             >
-              <span>{text}</span>
+              {text}
             </DraftEditor>
           </DrafEditorContainer>
         </EditingContent>
@@ -167,7 +174,7 @@ const Todo: FC<TodoProps> = props => {
           <DropdownClick
             showIcon={true}
             icon={<CalenderRangeIcon />}
-            tooltip={<Tooltip className="todo-tooltip">Schedule</Tooltip>}
+            tooltip={<Tooltip>Schedule</Tooltip>}
             open={toggleDropdown}
             onHandleToggle={handleToggleScheduleDropdown}
           >

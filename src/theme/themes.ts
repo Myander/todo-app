@@ -29,7 +29,7 @@ export const lightTheme: DefaultTheme = {
     secondary: '#999999',
     backgroundMain: '#fff',
     backgroundSecondary: '#ededed',
-    highlight: '#f1f1f1',
+    highlight: 'rgba(50, 50, 50, 0.2)',
     btn_background: 'rgba(0, 0, 0, 0.2)',
     disabled: 'rgba(0, 0, 0, 0.4)',
   },

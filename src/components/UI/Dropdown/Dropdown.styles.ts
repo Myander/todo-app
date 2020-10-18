@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Dropdown = styled.div`
   position: relative;
+  width: 6rem;
   &:hover nav {
     display: block;
   }
@@ -11,8 +12,7 @@ export const Menu = styled.nav`
   position: absolute;
   display: none;
   top: 3rem;
-  left: 0;
-  transform: translateX(-80%);
+  right: 0;
   background-color: ${props => props.theme.colors.backgroundSecondary};
   border: 2px solid ${props => props.theme.colors.highlight};
   border-radius: 8px;
@@ -31,10 +31,9 @@ export const MenuContent = styled.div`
 export const MenuItem = styled.div`
   padding: 2rem 1rem;
   margin: 2px auto;
-  display:flex;
+  display: flex;
   justify-content: center;
   text-decoration: none;
-  
 
   /* &:hover {
     background-color: ${props => props.theme.colors.btn_background};

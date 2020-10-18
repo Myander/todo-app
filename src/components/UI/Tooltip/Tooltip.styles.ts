@@ -12,7 +12,6 @@ export const Tooltip = styled.div`
   left: 50%;
   margin-left: -50px;
   font-size: 1.4rem;
-  /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
   color: ${props => props.theme.colors.main};

@@ -9,6 +9,7 @@ import { CogIcon as Cog } from '../../UI/Buttons/Icons';
 import { IconButton, Button } from '../../UI/Buttons/Buttons.styled';
 import Toggle from '../Toggle/Toggle';
 import styled from 'styled-components';
+
 const CogIcon = styled(Cog)`
   color: ${props => props.theme.colors.main};
   width: 2.4rem;
