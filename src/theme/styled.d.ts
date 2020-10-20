@@ -15,6 +15,8 @@ declare module 'styled-components' {
       highlight: string;
       btn_background: string;
       disabled: string;
+      menuShadow: string;
+      editorBackground: string;
     };
   }
 }

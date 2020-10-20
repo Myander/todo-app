@@ -3,16 +3,16 @@ import { PlusIcon } from '../../UI/Buttons/Icons';
 
 export const StyledPlusIcon = styled(PlusIcon)`
   color: #e0190b;
-  height: 1.8rem;
-  width: 1.8rem;
+  height: 18px;
+  width: 18px;
   padding: 0;
   margin: 0;
   border-radius: 50%;
 `;
 
 export const IconContainer = styled.div`
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 22px;
+  height: 22px;
   padding: 3px;
   border-radius: 50%;
   display: flex;

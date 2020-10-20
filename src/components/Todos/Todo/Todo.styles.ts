@@ -84,14 +84,15 @@ export const EditingArea = styled.div`
   border-radius: 5px;
   padding: 10px 10px 0;
   cursor: text;
-  color: white;
+  color: ${({ theme }) => theme.colors.main};
   border-color: hsla(0, 0%, 100%, 0.1);
-  background-color: #171717;
+  background-color: ${({ theme }) => theme.colors.editorBackground};
   &:focus {
     border-color: #555;
     outline: none;
   }
 `;
+
 export const EditingContent = styled.div`
   display: flex;
   align-items: center;
@@ -104,12 +105,14 @@ export const EditingContent = styled.div`
 export const RichTextInput = styled.div`
   flex: 1;
 `;
+
 export const DrafEditorContainer = styled.div`
   background-color: hsla(0, 0%, 100%, 0);
   border-left: 0.1px solid transparent;
   height: inherit;
   flex: 1;
 `;
+
 export const DraftEditor = styled.div`
   user-select: text;
   overflow-wrap: break-word;

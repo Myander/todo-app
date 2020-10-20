@@ -52,16 +52,18 @@ interface InboxProps {
 
 const Inbox: FC<InboxProps> = props => {
   return (
-    <Container>
-      <Title>Inbox</Title>
-      <TodoList
-        todos={props.todos}
-        onDeleteTodo={props.onDeleteTodo}
-        onHandleEdit={props.onEditTodo}
-        loading={props.loading}
-      />
-      <NewTodo onAddTodo={props.onAddTodo} />
-    </Container>
+    <>
+      <Container>
+        <Title>Inbox</Title>
+        <TodoList
+          todos={props.todos}
+          onDeleteTodo={props.onDeleteTodo}
+          onHandleEdit={props.onEditTodo}
+          loading={props.loading}
+        />
+        <NewTodo onAddTodo={props.onAddTodo} />
+      </Container>
+    </>
   );
 };
 

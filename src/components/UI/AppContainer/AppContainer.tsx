@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export const AppContainer = styled.div`
+  position: relative;
   margin-top: 4.5rem;
   background-color: ${props => props.theme.colors.backgroundMain};
   color: ${props => props.theme.colors.main};
   min-height: calc(100vh - 4.5rem);
+  overflow-y: hidden;
 `;
 
 interface ContentProps {

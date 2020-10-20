@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useRef } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import {
   AppContainer,
@@ -16,9 +16,12 @@ import { RootState } from '../../store/rootState';
 import { Spinner } from '../../components/UI/Spinner/Spinner.styled';
 import Today from './Today/Today';
 import Upcoming from './Upcoming/Upcoming';
+import Notification from '../../components/UI/Notification/Notification';
 
 const MainAuth: FC = () => {
   const [toggleNav, setToggleNav] = useState(true);
+  const [notification, setNotification] = useState(false);
+  const timeout = useRef<number | null>(null);
   const { path } = useRouteMatch();
   const toggleNavHandler = () => {
     setToggleNav(prevToggle => !prevToggle);
@@ -30,6 +33,27 @@ const MainAuth: FC = () => {
   const uid = useSelector(selectUid);
   const todoState = useSelector(selectTodos);
   const settings = useSelector(selectSettings);
+
+  const handleNotification = (n: boolean) => {
+    setNotification(n);
+  };
+
+  const openNotification = () => {
+    if (notification)
+      if (timeout.current !== null) clearTimeout(timeout.current);
+
+    setNotification(true);
+    timeout.current = setTimeout(() => {
+      setNotification(false);
+    }, 5000);
+  };
+
+  const closeNotification = () => {
+    if (timeout.current !== null) {
+      clearTimeout(timeout.current);
+    }
+    setNotification(false);
+  };
 
   useEffect(() => {
     const userId = localStorage.getItem('uid');
@@ -46,7 +70,16 @@ const MainAuth: FC = () => {
 
   const todoDeleteHander = (id: string) => {
     dispatch(actions.deleteTodo(id));
+    openNotification();
   };
+
+  useEffect(() => {
+    return () => {
+      if (timeout.current !== null) {
+        clearTimeout(timeout.current);
+      }
+    };
+  }, []);
 
   const todoEditHandler = (
     id: string,
@@ -104,6 +137,13 @@ const MainAuth: FC = () => {
             </Route>
           </Switch>
         </Content>
+        <Notification
+          prevTodo={todoState.prevTodo}
+          onUndo={todoAddHandler(uid)}
+          notification={notification}
+          handleNotification={handleNotification}
+          closeNotification={closeNotification}
+        />
       </AppContainer>
     </ThemeProvider>
   );

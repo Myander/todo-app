@@ -21,10 +21,13 @@ export const CheckboxContainer = styled.label`
     position: absolute;
     top: 0;
     left: 0;
-    height: 1.8rem;
-    width: 1.8rem;
-    border-radius: 0.5rem;
+    height: 18px;
+    width: 18px;
+    border-radius: 5px;
     background-color: #dddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &:hover .checkbox-input {

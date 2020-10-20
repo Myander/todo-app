@@ -30,6 +30,7 @@ export interface Todo {
 
 export interface TodosState {
   todos: Todo[];
+  prevTodo: Todo | undefined;
   loading: boolean;
   error: string | null;
 }

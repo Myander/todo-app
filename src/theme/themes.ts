@@ -15,6 +15,8 @@ export const darkTheme: DefaultTheme = {
     highlight: '#404040',
     btn_background: 'rgba(255, 255, 255, 0.2)',
     disabled: 'rgba(255, 255, 255, 0.4)',
+    menuShadow: '-2px 2px 5px 3px rgba(0, 0, 0, 0.35)',
+    editorBackground: '#171717',
   },
 };
 
@@ -32,5 +34,7 @@ export const lightTheme: DefaultTheme = {
     highlight: 'rgba(50, 50, 50, 0.2)',
     btn_background: 'rgba(0, 0, 0, 0.2)',
     disabled: 'rgba(0, 0, 0, 0.4)',
+    menuShadow: '0px 3px 5px #888888',
+    editorBackground: '#d6d6d6',
   },
 };
