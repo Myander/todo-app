@@ -5,6 +5,7 @@ export const ControlContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
 export const Dropdown = styled.div`
   position: absolute;
   left: 50%;
@@ -19,14 +20,16 @@ export const Dropdown = styled.div`
 export const Container = styled.div`
   width: 100%;
   max-width: 800px;
+  position: relative;
+  /* background: orange; */
 `;
 
 export const Nav = styled.nav`
-  position: sticky;
-  top: 4.5rem;
+  position: absolute;
+  top: 2rem;
   width: 100%;
+  max-width: 800px;
   padding-top: 4rem;
-  background: ${props => props.theme.colors.backgroundMain};
   z-index: 5;
 `;
 
@@ -40,10 +43,6 @@ export const DateButton = styled.div`
 export const Content = styled.div`
   display: flex;
   align-items: center;
-`;
-
-export const CarouselContainer = styled.div`
-  /* background: ${props => props.theme.colors.backgroundSecondary}; */
 `;
 
 export const Carousel = styled.div`
@@ -102,14 +101,42 @@ export const DateText = styled.div<DateTextProps>`
 `;
 
 export const DayList = styled.ul`
-  padding-top: 2rem;
   list-style-type: none;
+  position: absolute;
+  top: 14.5rem;
+  left: 0;
+  width: 100%;
+  max-width: 800px;
+  height: calc(100vh - 19rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(82, 82, 82, 0.4);
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.backgroundSecondary};
+    border-radius: 5px;
+    /* height: 20px; */
+    box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
+      inset -2px -2px 2px rgba(0, 0, 0, 0.25);
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.colors.btn_background};
+  }
 `;
 
 export const DayListItem = styled.li`
   font-size: 1.6rem;
   color: ${props => props.theme.colors.secondary};
   margin-bottom: 3rem;
+  &:first-child {
+    margin-top: 2rem;
+  }
 `;
 
 export const ListItemTitle = styled.div`

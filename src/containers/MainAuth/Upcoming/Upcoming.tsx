@@ -2,7 +2,6 @@ import React, { FC, useState, useEffect, useRef } from 'react';
 import { Todo as TodoModel } from '../../../store/todos/types';
 import DayPicker from 'react-day-picker';
 import {
-  CarouselContainer,
   DateButton,
   Content,
   Carousel,
@@ -76,14 +75,14 @@ const Upcoming: FC<UpcomingProps> = props => {
   const now = new Date();
   const [currDate, setCurrDate] = useState(moment());
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(new Date());
-  // const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
+  const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
   const listRef = useRef<HTMLDivElement>(null);
   const [currDates, setCurrDates] = useState<Array<EntryObj>>([]);
 
   useEffect(() => {
     const tempDate = moment(currDate);
     const dates = [];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 14; i++) {
       const newEntry: EntryObj = {
         date: tempDate.format('DD-MM-YYYY'),
         todos: [],
@@ -102,6 +101,17 @@ const Upcoming: FC<UpcomingProps> = props => {
     }
     setCurrDates(dates);
   }, [todos, currDate]);
+
+  useEffect(() => {
+    console.log('list refs: ', itemRefs.current);
+    if (itemRefs.current.length > 0 && itemRefs.current[0]) {
+      console.log(
+        'item 1:',
+        itemRefs.current[0].offsetTop,
+        itemRefs.current[0].offsetHeight
+      );
+    }
+  }, [currDates]);
 
   function momentToDate(m: Moment) {
     return new Date(
@@ -153,10 +163,13 @@ const Upcoming: FC<UpcomingProps> = props => {
   }
 
   function correctDate(day: number) {
-    const test = moment(currDate);
-    const LastDayOfMonth = test.endOf('month').date();
+    const currentDate = moment(currDate);
+    const LastDayOfMonth = currentDate.endOf('month').date();
     // january case ??
-    const LastDayOfPrevMonth = test.subtract(1, 'month').endOf('month').date();
+    const LastDayOfPrevMonth = currentDate
+      .subtract(1, 'month')
+      .endOf('month')
+      .date();
     if (day < 1) return LastDayOfPrevMonth + day;
     if (day > LastDayOfMonth) return day - LastDayOfMonth;
     return day;
@@ -228,34 +241,32 @@ const Upcoming: FC<UpcomingProps> = props => {
             <TodayButton onClick={today}>Today</TodayButton>
           </ButtonContainer>
         </ControlContainer>
-
-        <CarouselContainer>
-          <Carousel>
-            {week.map((day, index) => {
-              return (
-                <CarouselItem
-                  key={day}
-                  disabled={sundayDate + index < currentDay && MatchRest()}
-                  selectedDay={sundayDate + index === selected}
-                  onClick={() => selectDay(sundayDate + index)}
+        <Carousel>
+          {week.map((day, index) => {
+            return (
+              <CarouselItem
+                key={day}
+                disabled={sundayDate + index < currentDay && MatchRest()}
+                selectedDay={sundayDate + index === selected}
+                onClick={() => selectDay(sundayDate + index)}
+              >
+                <DayText
+                  isCurrDay={sundayDate + index === currentDay && MatchRest()}
                 >
-                  <DayText
-                    isCurrDay={sundayDate + index === currentDay && MatchRest()}
-                  >
-                    {day}
-                  </DayText>
-                  <DateText
-                    isDisabled={sundayDate + index < currentDay && MatchRest()}
-                    isCurrDay={sundayDate + index === currentDay && MatchRest()}
-                  >
-                    {correctDate(sundayDate + index)}
-                  </DateText>
-                </CarouselItem>
-              );
-            })}
-          </Carousel>
-        </CarouselContainer>
+                  {day}
+                </DayText>
+                <DateText
+                  isDisabled={sundayDate + index < currentDay && MatchRest()}
+                  isCurrDay={sundayDate + index === currentDay && MatchRest()}
+                >
+                  {correctDate(sundayDate + index)}
+                </DateText>
+              </CarouselItem>
+            );
+          })}
+        </Carousel>
       </Nav>
+
       <DayList>
         {currDates.map((item, index) => {
           const date = listStart.date();
@@ -265,7 +276,10 @@ const Upcoming: FC<UpcomingProps> = props => {
           const year = listStart.year();
           listStart.add(1, 'days');
           return (
-            <DayListItem key={`${date}-${dayOfWeek}-${monthOfYear}-${year}`}>
+            <DayListItem
+              key={`${date}-${dayOfWeek}-${monthOfYear}-${year}`}
+              ref={ref => (itemRefs.current[index] = ref)}
+            >
               <ListItemTitle>{`${week[dayOfWeek]} ${months[monthOfYear]} ${date}`}</ListItemTitle>
               <ListItemContent>
                 <TodoList

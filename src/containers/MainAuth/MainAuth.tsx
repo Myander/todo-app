@@ -34,10 +34,6 @@ const MainAuth: FC = () => {
   const todoState = useSelector(selectTodos);
   const settings = useSelector(selectSettings);
 
-  const handleNotification = (n: boolean) => {
-    setNotification(n);
-  };
-
   const openNotification = () => {
     if (notification)
       if (timeout.current !== null) clearTimeout(timeout.current);
@@ -141,7 +137,6 @@ const MainAuth: FC = () => {
           prevTodo={todoState.prevTodo}
           onUndo={todoAddHandler(uid)}
           notification={notification}
-          handleNotification={handleNotification}
           closeNotification={closeNotification}
         />
       </AppContainer>

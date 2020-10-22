@@ -7,7 +7,6 @@ import { Todo } from '../../../store/todos/types';
 interface NotificationProps {
   prevTodo: Todo | undefined;
   notification: boolean;
-  handleNotification: (n: boolean) => void;
   closeNotification: () => void;
   onUndo: (text: string, scheduled: string | null) => void;
 }
